@@ -1,80 +1,36 @@
 # so, we're basically recreating the sort method 
-# which should take index 0 and compare it to index 1
-# then move to 1 and compare it to two
-# and keep doing that until we get to the end 
-# then go through again and check that the value at the lower index is lower than the next value 
-# if not, do the whole thing again 
 
-# move to the right: (index_numX + 1)
-# move to the left: (index_numX - 1)
-
+# Each time the bubble_sort goes through the array, it can only place one number. 
+# So, the 'x' loop goes over the array one time for each item in the array. (line 17)
+# The 'i' loop does the actual bubble_sort, by comparing each item to the next one. (line 19)
+# When it gets to the end of the array, it plots the highest number. 
+# 'i' is the index of the curent number, i + 1 is the index of the next number. (line 21-22)
+# When i reaches the end of the array, the next_number will be 'nil', so do nothing (line 24)
+# Also do nothing when the current_number is lower. (line 24)
+# Else move the next_number to the position before the current number (this will move the current number up an index) (line 26-27)
+# We do this, by inserting 'next_number' into the current position 
+#     (this will replicate 'next_number' and move the 'current number' up one position)
+# and deleting its old position
 
 
 def bubble_sort(array)
-    sorted_array = []
-    array.each do |num1|
-        index_num1 = array.index(num1)
-        num2 =  array[(index_num1 + 1)]
+    x = 0
+    until x == array.length do  
+        i = 0
+        while i < array.length do
+            current_number = array[i]
+            next_number = array[(i + 1)]
 
-
-# ALTERNATIVE
-# array[i] = num1 
-# array[i + 1] = num2
-# i = 0, while i <= array.legth, i += 1
-# array[i] < array[i + 1]
-# next 
-#     else #if array[i] > array[i + 1]
-#         array[i + 1] = num1
-#         array[i] = num2
-
-
-        if array[index_num1] > array[(index_num1 + 1)]
-            array[index_num1] = 
-
-        array.each do |num2|
-            index_num2 = array.index(num2)
-            unless index_num1 == (index_num2 - 1)
-                next
-
-            else
-                if num1 < num2
-                    sorted_array[index_num2] = num2
-                    next
-                else # a few if nil then push?
-                    array[index_num2] = num1
-                    array[index_num1] = num2
-                    break
-                end
+            if (current_number < next_number) || (next_number == nil) # do nothing
+            else 
+                array.insert(i, next_number)
+                array.delete_at(i + 2)
             end
+            i += 1
         end
+        x += 1
     end 
-    p sorted_array
+    return array
 end
 
 bubble_sort([4,3,78,2,0,2])
-
-#add the last number, then iterate -1, then unshift the last number 
-
-
-#do until b = a.length -= 1 do until b = 0
-# def bubble_sort(array)
-#     sorted_array = []
-#     array.each do |num1|
-#         index_num1 = array.index(num1)
-#         array.each do |num2|
-#             index_num2 = array.index(num2)
-#             unless index_num1 == (index_num2 - 1)
-#                 next
-#             else
-#                 if num1 < num2
-#                     sorted_array[index_num2] = num2
-#                     next
-#                 else # a few if nil then push?
-#                     sorted_array[index_num2] = num1
-#                     sorted_array[index_num1] = num2
-#                 end
-#             end
-#         end
-#     end 
-#     p sorted_array
-# end
